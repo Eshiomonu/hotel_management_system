@@ -24,6 +24,22 @@
               <i class='bx bx-phone-call'></i>
               <a href="tel:+1-(123)-456-7890">+1 (123) 456 7890</a>
             </li>
+            @auth
+
+
+
+            <li>
+              <i class='bx bxs-user-pin'></i>
+              <a href="{{ route('dashboard') }}">Dashboard</a>
+            </li>
+
+            <li>
+              <i class='bx bxs-user-rectangle'></i>
+              <a href="{{ route('user.logout') }}">Logout</a>
+            </li>
+
+            @else
+
             <li>
               <i class='bx bxs-user-pin'></i>
               <a href="{{ route('login') }}">Login</a>
@@ -33,12 +49,27 @@
               <i class='bx bxs-user-rectangle'></i>
               <a href="{{ route('register') }}">Register</a>
             </li>
-            <li>
-              <i class='bx bx-envelope'></i>
-              <a href="mailto:hello@atoli.com">contact@dalcohotel.com</a>
-            </li>
+
+            @endauth
+
+
           </ul>
         </div>
+        <!-- <li>
+          <i class='bx bxs-user-pin'></i>
+          <a href="{{ route('login') }}">Login</a>
+        </li>
+
+        <li>
+          <i class='bx bxs-user-rectangle'></i>
+          <a href="{{ route('register') }}">Register</a>
+        </li>
+        <li>
+          <i class='bx bx-envelope'></i>
+          <a href="mailto:hello@atoli.com">contact@dalcohotel.com</a>
+        </li>
+        </ul>
+      </div> -->
       </div>
     </div>
   </div>
