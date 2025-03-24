@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\RoomTypeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,6 +35,22 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+
+
+    /// Team All Route 
+    Route::controller(TeamController::class)->group(function () {
+
+        Route::get('/all/team', 'AllTeam')->name('all.team');
+    });
+
+    /// RoomType All Route 
+    Route::controller(RoomTypeController::class)->group(function () {
+
+        Route::get('/room/type/list', 'RoomTypeList')->name('room.type.list');
+        // Route::get('/room/type/list', 'RoomTypeList')->name('room.type.list');
+        Route::get('/add/room/type', 'AddRoomType')->name('add.room.type');
+        Route::post('/room/type/store', 'RoomTypeStore')->name('room.type.store');
+    });
 }); // End Admin middleware
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 
