@@ -63,11 +63,19 @@
                           <label for="input3" class="form-label">Main Image </label>
                           <input type="file" name="image" class="form-control" id="image">
 
-                          <img id="showImage" src="{{ (!empty($editData->image)) ? url('upload/roomimg/'.$editData->image) : url('upload/no_image.jpg') }}" alt="Admin" class="bg-primary" width="60">
+                          <img id="showImage" src="{{ (!empty($editData->image)) ? url('upload/roomimg/'.$editData->image) : url('upload/no_image.jpg') }}" alt="Admin" class="bg-primary" width="70" height="50">
                         </div>
                         <div class="col-md-6">
                           <label for="input4" class="form-label">Gallery Image </label>
                           <input type="file" name="multi_img[]" class="form-control" multiple id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png">
+                          @foreach ($multiimgs as $item)
+
+                          <img src="{{ (!empty($item->multi_img)) ? url('upload/roomimg/multi_img/'.$item->multi_img) : url('upload/no_image.jpg') }}" alt="Admin" class="bg-primary" width="60">
+                          <a href="{{ route('multi.image.delete',$item->id) }}"><i class="lni lni-close"></i> </a>
+
+                          <a href=""><i class="lni lni-close"></i> </a>
+
+                          @endforeach
 
                           <div class="row" id="preview_img"></div>
                         </div>
@@ -342,11 +350,14 @@
               <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
                 <div class="card">
                   <div class="card-body">
-                    <a class="card-title btn btn-primary float-right">
+                    <a class="card-title btn btn-primary float-right" onclick="addRoomNo()" id="addRoomNo">
                       <i class="lni lni-plus">Add New</i>
                     </a>
                     <div class="roomnoHide" id="roomnoHide">
-                      <form action="">
+                      <form action="{{ route('store.room.no',$editData->id) }}" method="post">
+                        @csrf
+
+                        <input type="hidden" name="room_type_id" value="{{ $editData->roomtype_id }}">
 
                         <div class="row">
                           <div class="col-md-4">
@@ -369,13 +380,33 @@
                             <button type="submit" class="btn btn-success" style="margin-top: 28px;">Save</button>
 
                           </div>
-
-
                         </div>
-
                       </form>
-
                     </div>
+
+
+                    <table class="table mb-0 table-striped" id="roomview">
+                      <thead>
+                        <tr>
+                          <th scope="col">Room Number</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($allroomNo as $item)
+
+                        <tr>
+                          <td>{{ $item->room_no }}</td>
+                          <td>{{ $item->status }}</td>
+                          <td>
+                            <a href="{{ route('edit.roomno',$item->id) }}" class="btn btn-warning px-3 radius-30"> Edit</a>
+                            <a href="{{ route('delete.roomno',$item->id) }}" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
+                          </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
 
 
 
@@ -410,3 +441,17 @@
 
 
 @endsection
+</script>
+<!--========== End of Basic Plan Facilities ==============-->
+
+<!--========== Start Room Number Add ==============-->
+<script>
+  $('#roomnoHide').hide();
+  $('#roomview').show();
+
+  function addRoomNo() {
+    $('#roomnoHide').show();
+    $('#roomview').hide();
+    $('#addRoomNo').hide();
+  }
+</script>
