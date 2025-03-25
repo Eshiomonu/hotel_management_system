@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RoomType;
 use Carbon\Carbon;
+use App\Models\Room;
 
 class RoomTypeController extends Controller
 {
@@ -24,9 +25,13 @@ class RoomTypeController extends Controller
     public function RoomTypeStore(Request $request)
     {
 
-        RoomType::insert([
+        $roomtype_id =  RoomType::insertGetId([
             'name' => $request->name,
             'created_at' => Carbon::now(),
+        ]);
+
+        Room::insert([
+            'roomtype_id' => $roomtype_id,
         ]);
 
         $notification = array(
