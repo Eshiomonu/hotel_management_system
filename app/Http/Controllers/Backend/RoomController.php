@@ -8,7 +8,7 @@ use App\Models\Room;
 use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\RoomNumber;
-// use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
 
 class RoomController extends Controller
@@ -40,6 +40,7 @@ class RoomController extends Controller
         $room->discount = $request->discount;
         $room->short_desc = $request->short_desc;
         $room->description = $request->description;
+        $room->status = 1;
         /// Update Single Image 
 
         if ($request->file('image')) {
