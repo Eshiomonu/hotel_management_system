@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\RoomTypeController;
 use App\Http\Controllers\Backend\RoomController;
+use App\Http\Controllers\Frontend\FrontendRoomController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -70,3 +71,10 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 
 // Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+
+
+Route::controller(FrontendRoomController::class)->group(function () {
+
+    Route::get('/rooms', 'AllFrontendRoomList')->name('froom.all');
+    Route::get('/room/details/{id}', 'RoomDetailsPage');
+});

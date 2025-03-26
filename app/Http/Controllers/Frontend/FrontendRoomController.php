@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Room;
+use App\Models\MultiImage;
+use App\Models\Facility;
+
+class FrontendRoomController extends Controller
+{
+    //
+    public function AllFrontendRoomList()
+    {
+        $rooms = Room::latest()->get();
+        return view('frontend.room.all_rooms', compact('rooms'));
+    }
+
+    public function RoomDetailsPage($id)
+    {
+
+        $roomdetails = Room::find($id);
+        $multiImage = MultiImage::where('rooms_id', $id)->get();
+        $facility = Facility::where('rooms_id', $id)->get();
+        return view('frontend.room.room_details', compact('roomdetails', 'multiImage', 'facility'));
+    } // End Method 
+}
