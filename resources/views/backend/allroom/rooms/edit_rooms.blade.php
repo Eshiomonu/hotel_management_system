@@ -350,7 +350,7 @@
               <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
                 <div class="card">
                   <div class="card-body">
-                    <a class="card-title btn btn-primary float-right" onclick="addRoomNo()" id="addRoomNo">
+                    <a class="card-title btn btn-primary float-right" onclick="addRoomNo()" style="padding: 8px;" id="addRoomNo">
                       <i class="lni lni-plus">Add New</i>
                     </a>
                     <div class="roomnoHide" id="roomnoHide">
@@ -367,7 +367,7 @@
 
                           <div class="col-md-4">
                             <label for="input7" class="form-label">Status </label>
-                            <select name="view" id="input7" class="form-select">
+                            <select name="status" id="input7" class="form-select">
                               <option selected="">Select Status...</option>
                               <option value="Active">Active </option>
                               <option value="Inactive">Inactive </option>

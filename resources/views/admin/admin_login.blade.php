@@ -20,7 +20,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 	<link href="{{asset('backend/assets/css/app.css')}}" rel="stylesheet">
 	<link href="{{asset('backend/assets/css/icons.css')}}" rel="stylesheet">
-	<title>Admin Login</title>
+	<title>Admin Login Page </title>
 </head>
 
 <body class="">
@@ -48,23 +48,26 @@
 										<img src="{{asset('backend/assets/images/logo-icon.png')}}" width="60" alt="">
 									</div>
 									<div class="text-center mb-4">
-										<h5 class="">Rocker Admin</h5>
+										<h5 class="">Easy Admin</h5>
 										<p class="mb-0">Please log in to your account</p>
 									</div>
 									<div class="form-body">
+
 										<form class="row g-3" method="POST" action="{{ route('login') }}">
 											@csrf
+
 											<div class="col-12">
-												<label for="login" class="form-label">Email</label>
-												<input type="text" class="form-control @error('login') is-invalid @enderror" id="login" name="login" placeholder="jhon@example.com">
+												<label for="inputEmailAddress" class="form-label">Email/Name/Phone</label>
+												<input type="text" name="login" class="form-control @error('login') is-invalid @enderror" id="login" placeholder="jhon@example.com">
 												@error('login')
-												<span class="text-danger">{{ $message }}</span>
+												<span class="text-danger"> {{ $message }} </span>
 												@enderror
 											</div>
 											<div class="col-12">
-												<label for="password" class="form-label">Password</label>
+												<label for="inputChoosePassword" class="form-label">Password</label>
 												<div class="input-group" id="show_hide_password">
-													<input type="password" class="form-control border-end-0" name="password" id="password" value="12345678" placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class="bx bx-hide"></i></a>
+
+													<input type="password" name="password" class="form-control border-end-0" id="password" placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class="bx bx-hide"></i></a>
 												</div>
 											</div>
 											<div class="col-md-6">

@@ -11,21 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('book_areas', function (Blueprint $table) {
+        Schema::create('smtp_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->nullable();
-            $table->string('short_title')->nullable();
-            $table->string('main_title')->nullable();
-            $table->text('short_desc')->nullable();
-            $table->string('link_url')->nullable();
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('booking_room_lists');
+        Schema::dropIfExists('smtp_settings');
     }
 };

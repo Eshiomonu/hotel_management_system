@@ -5,6 +5,10 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+
   <!--favicon-->
   <link rel="icon" href="{{asset('backend/assets/images/favicon-32x32.png')}}" type="image/png" />
   <!--plugins-->
@@ -25,7 +29,6 @@
   <link rel="stylesheet" href="{{asset('backend/assets/css/dark-theme.css')}}" />
   <link rel="stylesheet" href="{{asset('backend/assets/css/semi-dark.css')}}" />
   <link rel="stylesheet" href="{{asset('backend/assets/css/header-colors.css')}}" />
-
   <!-- toastr CSS -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
   <!-- toastr CSS -->
@@ -34,7 +37,7 @@
   <link href="{{asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
   <!-- dataTables CSS -->
 
-  <title>Admin Dashboard</title>
+  <title>Admin Dashboard </title>
 </head>
 
 <body>
@@ -62,6 +65,16 @@
   <!--end wrapper-->
 
 
+  <!-- search modal -->
+
+  <!-- end search modal -->
+
+
+
+
+  <!--start switcher-->
+
+  <!--end switcher-->
   <!-- Bootstrap JS -->
   <script src="{{asset('backend/assets/js/bootstrap.bundle.min.js')}}"></script>
   <!--plugins-->
@@ -79,10 +92,14 @@
     new PerfectScrollbar(".app-container")
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="{{asset('backend/assets/js/code.js')}}"></script>
+  <script src="{{asset('backend/assets/js/validate.min.js')}}"></script>
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-  <!-- <script>
-    @if(Session::has('message'))
+  <script>
+    // (Session::has('message'))
     var type = "{{ Session::get('alert-type','info') }}"
     switch (type) {
       case 'info':
@@ -101,9 +118,7 @@
         toastr.error(" {{ Session::get('message') }} ");
         break;
     }
-    @endif
-  </script> -->
-
+  </script>
 
   <!--datatable JS-->
   <script src="{{asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
@@ -123,6 +138,7 @@
       toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
     });
   </script>
+
 </body>
 
 </html>
